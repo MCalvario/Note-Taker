@@ -1,7 +1,11 @@
 //set up variables and requires
+const fs = require ("fs");
+
 const express = require('express');
 
 const path = require('path');
+
+const { v4: uuidv4 } = require('uuid');
 
 const html_routes = require('./routes/html-routes')
 
@@ -10,6 +14,9 @@ const api_routes = require('./routes/api-routes')
 const app = express();
 
 const PORT = 3001;
+
+const allNotes = [];
+
 //set up middleware
 app.use(html_routes)
 app.use(api_routes)
@@ -17,15 +24,33 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json());
 
-app.get ("/api/notes", (req,res)) => {
+app.get ("/api/notes", (req,res) => {
     fs.readFile("db/db.json", "utf8", (err, data) => {
-        if(err) {
+        if (err) {
             console.error(err);
             return;
         }
         res.json(JSON.parse(data));
     });
-};
+});
+
+function addNote(body, notesArray) {
+  const newNote = {
+    ...body, 
+    id: uuidv4(), 
+  };
+  notesArray.push(newNote);
+  fs.writeFileSync(
+    path.join(__dirname, "./db/db.json"),
+    JSON.stringify(notesArray, null, 2)
+  );
+  return newNote;
+}
+
+app.post("/api/notes", (req, res) => {
+  const newNote = addNote(req.body, allNotes);
+  res.json(newNote);
+});
 
 //set up html routes
 app.get('/notes', (req, res) =>
