@@ -8,7 +8,7 @@ To use this note-taking application, simply open the Note Taker.  You will be pr
 If you click on the "New Note" button in the navigation at the top of the page, you will be presented with empty fields to enter a new note title and the note’s text in the right-hand column and the button disappears.
 
 # Live Site Application
-[Link to Live Site]
+[Link to Live Site] <br>
 [Screenshot of application]![Alt text](public/assets/Note-Taker.png)
 
 # Credits
