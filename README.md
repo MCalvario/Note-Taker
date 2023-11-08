@@ -9,7 +9,7 @@ If you click on the "New Note" button in the navigation at the top of the page, 
 
 # Live Site Application
 [Link to Live Site]
-[Screenshot of application]![Alt text](Note-Taker.png)
+[Screenshot of application]![Alt text](public/assets/Note-Taker.png)
 
 # Credits
 youtube: https://www.youtube.com/watch?v=pxPRWGm7EHw <br>
